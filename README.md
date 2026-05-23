@@ -2,116 +2,75 @@
 
 A powerful machine learning-based tool for translating books and documents from English to various Indian languages using the IndicTrans2 model.
 
+## Try it Now
+
+- **Colab Notebook:** [Open in Colab](https://colab.research.google.com/drive/1ijcrRp1mohambZWi1rp9DiNqR9FKkJ0F?usp=sharing)
+- **Gradio Demo (Colab):** [Launch Gradio Demo](https://colab.research.google.com/drive/1Heo4jzo0PnGBksxlaMT9sWVyoGOJSuzo?usp=sharing)
+
+## Screenshots
+
+![PDF Translation Demo](screenshots/pdf_demo_marathi.png)
+![Text Translation Demo](screenshots/text_demo_marathi.png)
+
 ## Features
 
-- Supports translation to multiple Indian languages:
+- **High Quality Translation:** Uses AI4Bharat's IndicTrans2 for state-of-the-art results.
+- **Format Preservation:** Keeps PDF layout and formatting intact during translation.
+- **Side-by-Side Preview:** Review original and translated content simultaneously.
+- **Multiple Formats:** Supports PDF and TXT files.
+- **Quantization Support:** 4-bit and 8-bit options for lower memory usage.
 
-  - Hindi (hin_Deva)
-  - Marathi (mar_Deva)
-  - Gujarati (guj_Gujr)
-  - Tamil (tam_Taml)
-  - Telugu (tel_Telu)
+## Supported Languages
 
-- Supports multiple file formats:
-  - PDF files (with formatting preservation)
-  - Text files (.txt)
-  - DOCX files (coming soon)
+Here is the list of languages supported by the IndicTrans2 models:
 
-## Model Details
+| Language | Code | Language | Code |
+| --- | --- | --- | --- |
+| Assamese | asm_Beng | Kashmiri (Arabic) | kas_Arab |
+| Bengali | ben_Beng | Kashmiri (Devanagari) | kas_Deva |
+| Bodo | brx_Deva | Maithili | mai_Deva |
+| Dogri | doi_Deva | Malayalam | mal_Mlym |
+| English | eng_Latn | Marathi | mar_Deva |
+| Gujarati | guj_Gujr | Manipuri (Bengali) | mni_Beng |
+| Hindi | hin_Deva | Manipuri (Meitei) | mni_Mtei |
+| Kannada | kan_Knda | Nepali | npi_Deva |
+| Odia | ory_Orya | Punjabi | pan_Guru |
+| Sanskrit | san_Deva | Santali | sat_Olck |
+| Sindhi (Arabic) | snd_Arab | Sindhi (Devanagari) | snd_Deva |
+| Tamil | tam_Taml | Telugu | tel_Telu |
+| Urdu | urd_Arab | Konkani | gom_Deva |
 
-The project uses the AI4Bharat/IndicTrans2 model for translations:
+## Model Details & Access
 
-- Base model: `ai4bharat/indictrans2-en-indic-1B`
-- High accuracy for Indian language translations
-- Preserves formatting and layout of source documents
-- Supports batch processing for efficient translation
+The project uses the AI4Bharat/IndicTrans2 model:
+- **Hugging Face Model:** [ai4bharat/indictrans2-en-indic-1B](https://huggingface.co/ai4bharat/indictrans2-en-indic-1B)
 
-## Installation
+**Note:** You need to request access to the Hugging Face repository and provide your HF Token in the environment variables (`HF_TOKEN`) to download and use the model.
 
-1. Clone the required repositories:
+## Libraries Used
 
-```bash
-git clone https://github.com/AI4Bharat/IndicTrans2.git
-```
-
-2. Install the required Python packages:
-
-```bash
-pip install nltk sacremoses pandas regex mock transformers>=4.33.2 mosestokenizer
-pip install bitsandbytes scipy accelerate datasets
-pip install sentencepiece
-pip install pymupdf
-pip install evaluate
-```
-
-3. Install NLTK data:
-
-```python
-import nltk
-nltk.download('punkt')
-```
-
-4. Install the IndicTransToolkit:
-
-```bash
-git clone https://github.com/VarunGumma/IndicTransToolkit.git
-cd IndicTransToolkit
-pip install --editable ./
-```
-
-## Usage
-
-1. Place your source document in the project directory
-2. Use the `convertFile()` function to translate your document:
-
-```python
-# For PDF files
-convertFile("document_name", "pdf", "hin_Deva")  # For Hindi translation
-
-# For text files
-convertFile("document_name", "txt", "tam_Taml")  # For Tamil translation
-```
-
-### Supported Language Codes
-
-- Hindi: "hin_Deva"
-- Marathi: "mar_Deva"
-- Gujarati: "guj_Gujr"
-- Tamil: "tam_Taml"
-- Telugu: "tel_Telu"
+- **Transformers:** For model loading and inference.
+- **IndicTransToolkit:** For preprocessing and postprocessing.
+- **Gradio:** For the user interface.
+- **PyMuPDF (fitz):** For PDF handling and rendering.
+- **Torch:** For computation.
+- **BitsAndBytes:** For 4/8-bit quantization.
 
 ## Project Structure
 
 ```
 Book-Translator/
-├── Book-Translator.ipynb    # Main notebook with model and translation code
-├── Input Samples/          # Sample input files for testing
-│   └── sample.txt
-├── output/                 # Directory for translated output
+├── app.py                   # Gradio application
+├── Book-Translator.ipynb    # Main notebook with translation code
+├── Input Samples/          # Sample input files
+├── screenshots/            # UI demo images
 └── README.md
 ```
 
-## Model Evaluation
-
-The translation model has been evaluated using multiple metrics:
-
-- BLEU Score
-- TER (Translation Edit Rate)
-- METEOR Score
-
-Comparisons have been made against translations from:
-
-- Google Translate API
-- ChatGPT
-- Gemini
-
-## Technical Requirements
-
-- Python 3.x
-- CUDA-compatible GPU (recommended for better performance)
-- Sufficient RAM for model loading
-- Disk space for model weights
-
 ## License
 
-This project uses the IndicTrans2 model which is released under the MIT License.
+This project is released under the MIT License. IndicTrans2 model is also released under the MIT License by AI4Bharat.
+
+---
+
+**Personal Note :** This project is made as a PoC for FutureGen Innovation Lab. [Certificate Link](https://www.linkedin.com/posts/lokesh-kudipudi_thrilled-to-have-successfully-completed-the-activity-7305805846532304896-v1RC?utm_source=share&utm_medium=member_desktop&rcm=ACoAAESoDDAB-qA2H6o7yBATiUQ2QQANQRGYYpY)
